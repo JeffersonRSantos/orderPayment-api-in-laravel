@@ -20,6 +20,21 @@
 
 5. As filas estão configuradas para serem executadas via Redis, certifique-se que já tenha o redis instalado e sendo executado.
 
+-------------------------------------------------------------------------------------
+#Rotas e collect
+
+1. POST /api/order-payment  *created new order payment*
+    1. {
+        "invoice": "126",
+        "name": "teste",
+        "cod_bank": "987",
+        "number_account": "6547845",
+        "number_agency": "0660",
+        "payment_value": "55.50"
+    }
+
+2. GET /api/list-payment  *lista all payments*
+3. GET /api/search?id=123  *search by od_wepayout*
 
 -------------------------------------------------------------------------------------
 
