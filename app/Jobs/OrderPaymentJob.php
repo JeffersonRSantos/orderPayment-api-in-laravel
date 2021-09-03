@@ -54,6 +54,6 @@ class OrderPaymentJob implements ShouldQueue
         $this->solicitationBuilder = $solicitation->make();
         $this->solicitationRepository = $solicitation->saveRepository();
 
-        ProcessPaymentJob::dispatch($this->solicitationRepository, $this->solicitationBuilder)->delay(now()->addMinutes(2));
+        ProcessPaymentJob::dispatch($this->solicitationRepository, $this->solicitationBuilder); //->delay(now()->addMinutes(2));
     }
 }

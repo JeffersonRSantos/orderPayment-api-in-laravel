@@ -8,15 +8,15 @@ use Illuminate\Support\Facades\Validator;
 use App\Jobs\OrderPaymentJob;
 use App\Models\Solicitation;
 
-use App\Http\Requests\SolicitationRequest;
-
 class SolicitationUserController extends Controller
 {
     public function index(Request $request)
     {
         try {
             $this->validatorRequest($request);
-            OrderPaymentJob::dispatch($request);
+            $solicitation = OrderPaymentJob::dispatch($request);
+            $response = Solicitation::latest()->first();
+            return json_encode(["Ordem de pagamento criada - codigo ", $response->id_wepayout], 200);
         } catch (\Exception $e) {
             return json_encode(["Error", "order payment fail - ".$e], 404);
         }
@@ -32,10 +32,10 @@ class SolicitationUserController extends Controller
         }
     }
 
-    public function search(Request $request)
+    public function search()
     {
         try {
-            $data = Solicitation::with('user')->where('id_wepayout', '=', $request->get('id_wepayout'))->first();
+            $data = Solicitation::with('user')->where('id_wepayout', '=', Request('id'))->first();
             return json_encode($data ?: "Nenhum registro encontrado.", 200);
         } catch (\Exception $e) {
             return json_encode(["Error:", "search fail - ".$e],404);

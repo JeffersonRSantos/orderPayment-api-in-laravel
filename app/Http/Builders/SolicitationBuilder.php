@@ -21,7 +21,7 @@ class SolicitationBuilder
         $this->solicitation->setIdWepayout(Tools::generateIdWepayout());
         $this->solicitation->setUserId($user->id);
         $this->solicitation->setPaymentValue($request['payment_value']);
-        $this->solicitation->setStatus("criado");
+        $this->solicitation->setStatus("processando");
         $this->solicitation->setInvoice($user->invoice);
     }
 

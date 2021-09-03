@@ -40,5 +40,4 @@ class OrderPaymentBuilder
 
         return $user;
     }
-
 }
